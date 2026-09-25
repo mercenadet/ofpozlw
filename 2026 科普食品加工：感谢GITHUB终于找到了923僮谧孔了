@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+www.m.shanxinyuanlu.com/Article/details/9911179.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4914715.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0577354.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3837217.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9096274.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6106958.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8306259.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2865207.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7804794.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3506303.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5107292.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2333327.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2614669.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6247165.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4105511.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1104792.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6577469.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8321083.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9146217.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4872628.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6431053.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7286288.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6579928.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8247398.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1214955.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8720106.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4681371.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1725942.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4216545.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5084117.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1957733.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2774966.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7847095.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5067033.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0278730.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6947378.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2746947.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4658437.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3143840.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1948313.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0860274.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4986227.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7544467.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1050817.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3107413.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8057682.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4285091.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5098011.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3300255.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6848470.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1058612.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7640807.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7436953.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1135215.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3407543.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1513656.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4928079.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7841917.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9496287.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2813387.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2173226.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4683031.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2643058.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3547130.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0474145.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6742034.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4942204.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7224402.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7246627.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3578409.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1214406.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6762381.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0144095.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6762439.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7606497.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4616599.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5319167.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0579879.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5611429.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4805653.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8284682.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6165655.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6191728.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3621025.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9176572.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7243213.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4289500.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0873511.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1029666.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0918098.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7271192.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8797061.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3127094.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2461091.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3136029.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0586617.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5824698.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0517227.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7505965.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5279950.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0286944.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5068754.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7464876.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4283382.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3100221.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6777058.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0912688.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0984668.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7280814.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8731141.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6289732.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6983498.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0919677.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5876217.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2380910.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6532889.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2570134.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5795435.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6792332.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5648232.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8247364.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9158624.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1297941.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5098929.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5801135.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1514953.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5738760.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1920401.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7865460.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4984496.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5943659.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6841347.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5780098.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0286621.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6466580.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6502243.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5982287.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2698969.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1990391.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2470574.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1329882.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5431326.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0136285.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5796500.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1514832.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6813024.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2030732.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7848064.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1366310.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8958364.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4925869.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2801452.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2436094.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5911534.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4816957.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3130241.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4503795.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6103997.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7839141.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1243918.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2741849.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2122155.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9387321.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7948438.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2359389.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1699033.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3462460.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0740946.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5012105.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7541495.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3214572.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2079250.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5690737.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0407036.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1685988.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5656435.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3575174.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2022115.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7911463.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5959516.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3645424.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2107062.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8320333.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4629933.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2056213.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4574469.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1093559.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4653214.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6476321.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8850307.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4131735.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8064410.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7160555.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4103207.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6141096.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6436587.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4387463.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6879028.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5960797.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7981401.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9795100.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0517463.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1797765.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7177364.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6844628.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8132064.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0912376.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7406699.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4654059.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3882901.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3828175.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6980702.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1920073.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5740068.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0539803.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3779096.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8765765.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6764668.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1568274.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1941102.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1103768.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7803980.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4382954.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8382502.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1065356.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0511036.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7021932.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9765621.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3843391.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5039072.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4574600.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0265557.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2066830.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1054364.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2133092.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8387133.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6735874.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0243393.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2406699.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0974356.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3432356.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8728176.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2481323.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5799067.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9876401.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1546610.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8469827.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9100213.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3109791.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0896840.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2694702.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4970501.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4948688.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8580750.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7255441.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1286354.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3828065.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5739541.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2051653.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8054847.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4249657.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6922917.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1270987.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0885521.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6875623.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2514041.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9091549.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7647067.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1357194.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9453240.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8187992.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7149287.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4527678.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/2405870.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/7223975.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0835766.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3573159.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8351835.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6409987.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1619518.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9165243.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5655876.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8358944.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9439275.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1328430.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6704111.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1339092.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/5036555.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6590400.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/8983983.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4340362.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4028754.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/4224063.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1540654.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/9684793.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/0800067.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/1948372.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/3573621.shtml<br>
+www.m.shanxinyuanlu.com/Article/details/6247709.shtml<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2521:02:38
